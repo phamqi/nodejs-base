@@ -1,9 +1,8 @@
 import { memo, useEffect, useRef, useState } from "react";
 
 import { dataProfile, DEFAULT_TIMER } from "../constant";
-function Infor({ handleZoomout }) {
+function Infor({ handleZoomOut }) {
   const prevData = dataProfile;
-  console.log("test re-render");
   const prevDataLength = prevData.length;
   const [counter, setCounter] = useState(0);
   const [data, setData] = useState("");
@@ -34,7 +33,7 @@ function Infor({ handleZoomout }) {
         setCounter(counter + 1);
       }
       if (counter === prevData.length) {
-        handleZoomout();
+        handleZoomOut();
       }
     }, timer);
     return () => {

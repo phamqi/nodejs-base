@@ -4,22 +4,20 @@ import FormContact from "./components/FormContact";
 import "./style.scss";
 import Infor from "./components/Infor";
 import { iconObject } from "./constant";
+import DivRandom from "./components/DivRandom";
 
-function Personal(props) {
+function Personal({ handleCloseVsCode, vscode }) {
   const [ready, setReady] = useState(false);
   const [colorCodeTitle, setColorCodeTitle] = useState();
   const [go, setGo] = useState(false);
-  const handleZoomout = () => {
+  const handleZoomOut = () => {
     setReady(true);
-    console.log("set ready");
   };
   const colorCodeTitleArray = [
     "rgb(25,184,108)",
     "rgb(98, 202, 85)",
     "rgb(246, 246, 244)",
   ];
-
-  console.log("index re-render");
   const randomColor = Math.floor(Math.random() * colorCodeTitleArray.length);
   const timeoutRef = useRef(null);
   const resetTimeout = () => {
@@ -27,23 +25,62 @@ function Personal(props) {
       clearTimeout(timeoutRef.current);
     }
   };
+  let myWebsiteArray = [];
+  let aLenght = Math.floor(Math.random() * 20) + 7;
+  for (var i = 0; i < aLenght; i++) {
+    let width = Math.floor(Math.random() * 6) + 3;
+    let color = Math.floor(Math.random() * 6);
+    let margin = Math.random() < 0.3;
+    let opacity = Math.floor(Math.random() + 0.5) + 0.5;
+    myWebsiteArray.push(
+      <DivRandom
+        key={i}
+        width={width}
+        color={color}
+        margin={margin}
+        opacity={opacity}
+      />
+    );
+  }
+  let openEditorsArray = [];
+  let bLenght = Math.floor(Math.random() * 5) + 4;
+  for (var j = 0; j < bLenght; j++) {
+    let width = Math.floor(Math.random() * 6) + 3;
+    let color = Math.floor(Math.random() * 10);
+    let margin = Math.random() < 0.3;
+    let opacity = Math.floor(Math.random() + 0.5) + 0.5;
+    console.log(width, color, margin, opacity);
+    openEditorsArray.push(
+      <DivRandom
+        key={20 + j}
+        width={width}
+        color={color}
+        margin={margin}
+        opacity={opacity}
+      />
+    );
+  }
   useEffect(() => {
-    console.log("hello");
+    console.log("aray b ", openEditorsArray);
+    console.log("aray a ", myWebsiteArray);
     setColorCodeTitle(colorCodeTitleArray[randomColor]);
     resetTimeout();
     timeoutRef.current = setTimeout(() => {
       setGo(true);
-    }, 3000);
+    }, 1750);
     return () => {
       resetTimeout();
     };
   }, []);
+
   return (
-    <div className="main">
+    <div className={vscode ? "main" : "main_none"}>
       <div className={ready ? "vscode" : "vscode--zoom"}>
         <div className="vscode_menu">
           <div className="vscode_menu_text">
-            <div className="vscode_menu_logo">VS</div>
+            <div className="vscode_menu_logo">
+              <img className="logo" src="vscode.png" alt="VSvode" />
+            </div>
             <ul>
               <li>File</li>
               <li>Edit</li>
@@ -61,7 +98,7 @@ function Personal(props) {
           <div className="vscode_menu_control">
             <button>-</button>
             <button>=</button>
-            <button>x</button>
+            <button onClick={() => handleCloseVsCode()}>x</button>
           </div>
         </div>
         <div className="vscode_content">
@@ -193,10 +230,14 @@ function Personal(props) {
               <li>
                 <div className="vscode_content_folder_tree">
                   <ul>
-                    <li>build</li>
-                    <li>node_modules</li>
-                    <li>public</li>
-                    <li>src</li>
+                    <li className="root">
+                      <p>Open editors</p>
+                      <ul>{openEditorsArray}</ul>
+                    </li>
+                    <li className="root vscode_content_folder_tree_my_website">
+                      <p> Mywebsite</p>
+                      <ul>{myWebsiteArray}</ul>
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -229,7 +270,7 @@ function Personal(props) {
                   : "vscode_content_code_body--zoom"
               }
             >
-              {go && <Infor handleZoomout={handleZoomout} />}
+              {go && <Infor handleZoomOut={handleZoomOut} />}
               <div className="vscode_content_code_body_contact">
                 {ready && <FormContact />}
               </div>

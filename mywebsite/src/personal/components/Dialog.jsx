@@ -1,8 +1,7 @@
-import React, { useState, forwardRef, useImperativeHandle } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 
 const Dialog = forwardRef(({ message }, ref) => {
   const [show, setShow] = useState(false);
-  console.log(message);
   useImperativeHandle(ref, () => ({
     onShow() {
       setShow(true);

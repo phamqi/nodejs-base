@@ -1,0 +1,29 @@
+.app {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  &_btn_vscode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 85px;
+    left: 15px;
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+    color: white;
+    & p {
+      margin: 5px 0;
+    }
+  }
+  &_vscode_icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+}

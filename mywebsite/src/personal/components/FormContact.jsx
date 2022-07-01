@@ -21,7 +21,6 @@ function FormContact() {
       inputs.email === "" ||
       inputs.message === ""
     ) {
-      console.log(inputs);
       childRef.current.onShow();
       setMessage("You must fill out all the fields");
       // alert("You must fill out all the fields");
@@ -38,9 +37,7 @@ function FormContact() {
             childRef.current.onShow();
             setMessage("Thank you for contacting me");
           },
-          (error) => {
-            console.log(error.text);
-          }
+          (error) => {}
         );
       e.target.reset();
     }
