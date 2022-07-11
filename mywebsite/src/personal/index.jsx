@@ -2,17 +2,14 @@ import { useEffect, useRef, useState } from "react";
 
 import FormContact from "./components/FormContact";
 import "./style.scss";
-import Infor from "./components/Infor";
 import { iconObject } from "./constant";
 import DivRandom from "./components/DivRandom";
+import Background from "./components/Background";
 
 function Personal({ handleCloseVsCode, vscode }) {
   const [ready, setReady] = useState(false);
   const [colorCodeTitle, setColorCodeTitle] = useState();
   const [go, setGo] = useState(false);
-  const handleZoomOut = () => {
-    setReady(true);
-  };
   const colorCodeTitleArray = [
     "rgb(25,184,108)",
     "rgb(98, 202, 85)",
@@ -75,7 +72,7 @@ function Personal({ handleCloseVsCode, vscode }) {
 
   return (
     <div className={vscode ? "main" : "main_none"}>
-      <div className={ready ? "vscode" : "vscode--zoom"}>
+      <div className={ready ? "vscode" : "vscode"}>
         <div className="vscode_menu">
           <div className="vscode_menu_text">
             <div className="vscode_menu_logo">
@@ -263,14 +260,9 @@ function Personal({ handleCloseVsCode, vscode }) {
                 <li>myself</li>
               </ul>
             </div>
-            <div
-              className={
-                ready
-                  ? "vscode_content_code_body"
-                  : "vscode_content_code_body--zoom"
-              }
-            >
-              {go && <Infor handleZoomOut={handleZoomOut} />}
+            <div className="vscode_content_code_body">
+              <Background />
+
               <div className="vscode_content_code_body_contact">
                 {ready && <FormContact />}
               </div>

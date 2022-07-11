@@ -275,8 +275,6 @@
       &_body {
         display: flex;
         flex-direction: column;
-        margin: 0 30px;
-        position: relative;
         justify-content: flex-start;
         align-items: normal;
         animation: code_zoom 1.5s ease-out;
@@ -568,5 +566,23 @@ p {
 @media screen and (max-width: 600px) {
   .vscode_content_folder {
     display: none;
+  }
+}
+.canvas {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.2;
+  width: 100vw;
+  height: 100vh;
+}
+@keyframes move {
+  from {
+    transform: translate(10px, 10px);
+  }
+  to {
+    transform: translate(50px, 50px);
   }
 }

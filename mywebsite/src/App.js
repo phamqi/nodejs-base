@@ -8,11 +8,9 @@ function App() {
   console.log(vscode);
   const handleCloseVsCode = () => {
     setVscode(false);
-    console.log("goi thanh cong", vscode);
   };
   const handleOpenVscode = () => {
     setVscode(true);
-    console.log("goi open", vscode);
   };
   return (
     <div className="app" style={{ backgroundImage: "url(/desktop.jpg)" }}>
